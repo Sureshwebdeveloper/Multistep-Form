@@ -18,7 +18,7 @@
         <h3>Register</h3>
         <div class="input-1">
           <label for="name">Name</label>
-          <input type="text" id="name" placeholder="enter your name" required />
+          <input type="text" id="name" placeholder="enter your name" required minlength="3" />
           <div id="error"></div>
         </div>
         <div class="input-2">
@@ -26,7 +26,7 @@
           <input
             type="email"
             id="email"
-            placeholder="enter your name"
+            placeholder="exmaple@gmail.com"
             required
           />
           <div id="error"></div>
@@ -34,7 +34,12 @@
         <div class="btn-group">
           <button id="first-btn" class="btn" type="submit">Continue</button>
         </div>
-      </div>
+        <div class="steps">
+          <h4>step 1 of 3</h4>
+          <h1><b>.</b></h1>
+        </div>
+</div>
+       
 
       <div class="box-two" id="box-two">
         <h3>Which topics you are interested in?</h3>
@@ -52,6 +57,10 @@
         <div class="btn-group">
           <button id="second-btn" type="submit" class="btn">Continue</button>
         </div>
+        <div class="steps">
+          <h4>step 2 of 3</h4>
+          <h1><b>.</b><b>.</b></h1>
+        </div>
       </div>
 
       <div class="box-three" id="box-three">
@@ -62,14 +71,20 @@
           </p>
           <p class="output-name"><h4 class="name">Name: <span id="output-display-name"></span></h4></p>
         </div>
-        <div class="topics">
+        <div class="topics" id="wholetopic">
           <h4>Topics:</h4>
+         
         </div>
         <div class="btn-group">
           <button id="third-btn" type="submit" class="btn">Continue</button>
         </div>
+        .  <div class="steps">
+          <h4>step 3 of 3</h4>
+          <h1><b>.</b><b>.</b><b>.</b></h1>
+        </div>
       </div>
     </form>
+    
     <script src="./js/script.js"></script>
   </body>
 </html>

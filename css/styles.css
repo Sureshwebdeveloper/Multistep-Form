@@ -45,6 +45,31 @@ form {
   border-radius: 10px;
 }
 
+.steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 80px;
+  text-align: center;
+}
+
+.steps h1 {
+  margin-left: 10px;
+  margin-top: -22px;
+  font-size: 35px;
+}
+
+.steps h4 {
+  color: var(--shade-gray);
+}
+
+h1 > b {
+  margin: 0 4px;
+  color: var(--dark-purple);
+  filter: drop-shadow(0 1mm 1mm var(--light-purple));
+}
+
 .box-one h3,
 .box-two h3,
 .box-three h3 {
@@ -126,7 +151,8 @@ form {
   margin-left: 20px;
 }
 
-.email,.name{
+.email,
+.name {
   color: var(--shade-gray);
   margin-left: 20px;
   padding: 5px 0;

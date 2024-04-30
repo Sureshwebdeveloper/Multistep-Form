@@ -19,29 +19,79 @@ const output_email = document.getElementById("output-display-email");
 const output_name = document.getElementById("output-display-name");
 const btn_3 = document.getElementById("third-btn");
 
+console.dir(output_name);
+console.log(output_email);
+
 submitForm.addEventListener("click", (e) => {
   e.preventDefault();
 });
 
 btn_1.addEventListener("click", () => {
+  validateEmail();
+});
+
+function validateEmail() {
   const name = inputname.value;
   const email = inputemail.value;
-
-  if (name.length < 3  ) {
-    alert("Please Enter Valid Name And Email");
+  if (inputname.value.trim() == "") {
+    alert("Please Enter Value and Click Continue");
+    location.reload();
+  } else if (
+    inputname.value.trim().length < 3 ||
+    inputname.value.trim().length > 15 
+  ) {
+    alert("Name Must Be min 3 and max 15 charcters & Enter Only Sting");
+    location.reload();
+    localStorage.clear();
   } else {
-    const dataName = localStorage.setItem("username", name);
-    const dataEmail = localStorage.setItem("useremail", email);
-    box_1.classList.add("hidden");
-    box_2.classList.add("block");
+    if (
+      !inputemail.value.match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+    ) {
+      alert("Please enter a valid Email");
+      location.reload();
+      localStorage.clear();
+    } else {
+      localStorage.setItem("username", name);
+      localStorage.setItem("useremail", email);
+      box_1.classList.add("hidden");
+      box_2.classList.add("block");
+    }
   }
-});
+}
 
 // btn 2
 btn_2.addEventListener("click", () => {
   box_2.classList.remove("block");
   box_3.classList.add("block");
+  setLocalData();
+  wholetopics();
 });
+
+// localStorage setup
+function setLocalData() {
+  output_name.innerText = localStorage.getItem("username");
+  output_email.innerText = localStorage.getItem("useremail");
+  topics.innterText = localStorage.getItem("option-1");
+}
+
+// listitems for topics
+function wholetopics() {
+  const wholetopic = document.querySelector("#wholetopic");
+
+  const array = [1, 2, 3];
+  for (let index = 0; index <= array.length; index++) {
+    const li = document.createElement("li");
+    li.style.marginLeft = "30px";
+    li.innerText = localStorage.getItem(`option-${index}`);
+    if (li.innerText === "") {
+      li.remove();
+    } else {
+      wholetopic.appendChild(li);
+    }
+  }
+}
 
 topic_1.addEventListener("click", () => {
   topic_1.classList.toggle("add-color");
@@ -73,17 +123,8 @@ function getData3(e) {
   return storedata_3;
 }
 
-// localStorage setup
-function setLocalData() {
-  const getname = localStorage.getItem("userename");
-  const getemail = localStorage.getItem("usereemail");
-  output_email.innerText=(getemail);
-  output_name.innerText=(getname);
-}
-
 // btn -3
 btn_3.addEventListener("click", () => {
-  setLocalData();
   const notification = alert("✅ Succes");
   box_3.classList.remove("block");
   box_1.classList.remove("hidden");
@@ -93,34 +134,3 @@ btn_3.addEventListener("click", () => {
   localStorage.clear();
   location.reload();
 });
-// box_1.addEventListener("click", (e) => {
-//   e.preventDefault();
-//   validateinputs();
-// });
-
-function validateinputs() {
-  const usernameValue = inputname.value.trim();
-  const useremailValue = inputemail.value.trim();
-}
-
-function setError(element, message) {
-  const inputParent = element.parentElement;
-  const errorElement = inputParent.querySelector(".error");
-
-  errorElement.innterText = message;
-  inputParent.classList.add("error");
-  box_2.classList.add("hidden");
-  box_3.classList.add("hidden");
-}
-
-const validateEmail = () => {
-  if (
-    !emailInput.value
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      )
-  ) {
-    return alert("Please enter a valid Email");
-  }
-};
